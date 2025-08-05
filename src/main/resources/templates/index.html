@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="실시간 이미지 필터 처리 웹 애플리케이션">
+    <meta name="keywords" content="이미지 필터, 사진 편집, 실시간 처리, 드래그 앤 드롭">
+    <meta name="author" content="Image Filter Studio">
+    
+    <title>🎨 Image Filter Studio - 실시간 이미지 필터링</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/css/style.css" as="style">
+    <link rel="preload" href="/js/app.js" as="script">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+</head>
+<body>
+    <!-- Main Application -->
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1>🎨 Image Filter Studio</h1>
+            <p>AI 기반 실시간 이미지 편집 도구</p>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Left Panel: Controls -->
+            <aside class="left-panel">
+                <!-- Image Upload Section -->
+                <section class="upload-section">
+                    <h3>📁 이미지 업로드</h3>
+                    <div class="file-upload">
+                        <input type="file" id="imageInput" accept="image/*">
+                        <label for="imageInput" class="upload-btn">📤 이미지 선택하기</label>
+                    </div>
+                    <small class="upload-info">지원 형식: JPG, PNG, BMP, TIFF (최대 10MB)</small>
+                </section>
+
+                <!-- Filter Controls Section -->
+                <section class="controls-section">
+                    <div class="filter-group">
+                        <h4>🎨 이미지 필터</h4>
+                        <p class="filter-instructions">
+                            ⬆️⬇️ 드래그하여 필터 적용 순서 변경<br>
+                            <kbd>Ctrl+S</kbd> 다운로드, <kbd>Ctrl+R</kbd> 초기화
+                        </p>
+                    </div>
+                    
+                    <!-- Dynamic Filter List -->
+                    <div id="filterOrderList" class="filter-order-list">
+                        <!-- 필터들이 JavaScript로 동적 생성됩니다 -->
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="control-buttons">
+                        <button id="resetBtn" class="action-btn reset-btn" onclick="resetFilters()" disabled>
+                            <span class="btn-icon">🔄</span>
+                            <span class="btn-text">모든 필터 초기화</span>
+                        </button>
+                        <button id="downloadBtn" class="action-btn download-btn" onclick="downloadImage()" disabled>
+                            <span class="btn-icon">💾</span>
+                            <span class="btn-text">이미지 다운로드</span>
+                        </button>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Right Panel: Image Display -->
+            <section class="right-panel">
+                <div class="images-container">
+                    <!-- Original Image Section -->
+                    <div class="image-section">
+                        <div class="image-header">
+                            <h3>📷 원본 이미지</h3>
+                        </div>
+                        <div class="image-container" id="originalImageContainer">
+                            <div class="placeholder-text">이미지를 업로드해주세요</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Processed Image Section -->
+                    <div class="image-section">
+                        <div class="image-header">
+                            <h3>✨ 수정된 이미지</h3>
+                            <button id="downloadBtn2" class="download-btn-small" onclick="downloadImage()" disabled>
+                                <span class="btn-icon">💾</span>
+                                <span class="btn-text">다운로드</span>
+                            </button>
+                        </div>
+                        <div class="image-container" id="resultImageContainer">
+                            <div class="placeholder-text">필터를 적용해보세요</div>
+                            <div class="loading" id="loading">
+                                <div class="spinner"></div>
+                                <p>처리 중...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
+
+    <!-- Scripts -->
+    <script src="/js/app.js" defer></script>
+</body>
+</html>
