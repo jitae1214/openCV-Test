@@ -40,7 +40,7 @@
 
 1. **저장소 클론**
    ```bash
-   git clone https://github.com/yourusername/image-filter-studio.git
+   git clone https://github.com/jitae1214/openCV-Test
    cd image-filter-studio
    ```
 
